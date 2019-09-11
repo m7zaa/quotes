@@ -1,3 +1,7 @@
-.kanyeQuote, .donaldQuote {
+.kanyeQuote, .donaldQuote, .kanyeCorrect, .donaldCorrect, .wrongAnswer {
+  display: none;
+}
+
+.hidden {
   display: none;
 }
