@@ -3,7 +3,7 @@ export class TronaldDump {
   getDTQuotes() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.tronalddump.io/search/quote?query={query}`;
+      const url = `https://api.tronalddump.io/random/quote`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
