@@ -47,6 +47,9 @@ $(document).ready(function() {
       console.log( `There was an error processing your request: ${error.message}`);
     });
 
+    let kanyeTrumpGif = new Giphy();
+    let promise3 = kanyeTrumpGif.getGif();
+
     $("#donald").click(function(){
       if (number < 3) {
         $(".hidden").hide();
@@ -71,11 +74,10 @@ $(document).ready(function() {
         $("#donald").off();
         $("#kanye").off();
         player.score ++;
-        let kanyeGif = new Giphy();
-        let promise3 = kanyeGif.getGif();
         promise3.then(function(response) {
       const body3 = JSON.parse(response);
       console.log(body3);
+      console.log(process.env.API_KEY);
       $(".kanyeGif").html(`<img src="${body3.data.images.original.url}">`)
     }, function(error) {
       console.log(`There was an error processing your request: ${error.message}`);

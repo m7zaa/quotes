@@ -3,7 +3,7 @@ export class TronaldDump {
   getDTQuotes() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.tronalddump.io/random/quote`;
+      const url = `https://cors-anywhere.herokuapp.com/https://api.tronalddump.io/random/quote`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -21,7 +21,7 @@ export class KanyeRest {
   getKWQuotes() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.kanye.rest`;
+      const url = `https://cors-anywhere.herokuapp.com/https://api.kanye.rest`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
@@ -51,7 +51,7 @@ export class Giphy {
   getGif() {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.giphy.com/v1/gifs/random?api_key=yQo8Z3kk8HkAC5Se3BOU9KYTBvwYUHFC&tag=kanye_west`;
+      const url = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=kanye_west`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
