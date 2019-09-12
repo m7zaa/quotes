@@ -47,17 +47,36 @@ $(document).ready(function() {
       console.log( `There was an error processing your request: ${error.message}`);
     });
 
-    let kanyeTrumpGif = new Giphy();
-    let promise3 = kanyeTrumpGif.getGif();
 
     $("#donald").click(function(){
       if (number < 3) {
+        let gifTag = "donald_trump";
+        let kanyeTrumpGif = new Giphy();
+        let promise3 = kanyeTrumpGif.getGif(gifTag);
         $(".hidden").hide();
         $(".donaldCorrect").show();
         $("#donald").off();
         $("#kanye").off();
         player.score ++;
+        promise3.then(function(response) {
+        const body3 = JSON.parse(response);
+        console.log(body3);
+        $(".trumpGif").html(`<img src="${body3.data.images.original.url}">`)
+        }, function(error) {
+          console.log(`There was an error processing your request: ${error.message}`);
+        });
       } else {
+        
+        let gifTag = "wrong";
+        let failGif = new Giphy();
+        let promise3 = failGif.getGif(gifTag);
+        promise3.then(function(response) {
+          const body3 = JSON.parse(response);
+          $(".wrongAnswer").html(`<img src="${body3.data.images.original.url}">`)
+        });
+
+
+
         $(".hidden").hide();
         $(".wrongAnswer").show();
         $("#donald").off();
@@ -68,6 +87,10 @@ $(document).ready(function() {
     });
 
     $("#kanye").click(function(){
+      let gifTag = "kanye_west";
+      let kanyeTrumpGif = new Giphy();
+      let promise3 = kanyeTrumpGif.getGif(gifTag);
+
       if (number >= 3) {
         $(".hidden").hide();
         $(".kanyeCorrect").show();
@@ -75,20 +98,31 @@ $(document).ready(function() {
         $("#kanye").off();
         player.score ++;
         promise3.then(function(response) {
-      const body3 = JSON.parse(response);
-      console.log(body3);
-      console.log(process.env.API_KEY);
-      $(".kanyeGif").html(`<img src="${body3.data.images.original.url}">`)
-    }, function(error) {
-      console.log(`There was an error processing your request: ${error.message}`);
-    });
-      } else {
-        $(".wrongAnswer").show();
-        $(".kanyeCorrect").hide();
-        $("#donald").off();
-        $("#kanye").off();
-        player.score = 0;
-      }
+        const body3 = JSON.parse(response);
+
+        $(".kanyeGif").html(`<img src="${body3.data.images.original.url}">`)
+        }, function(error) {
+          console.log(`There was an error processing your request: ${error.message}`);
+        });
+        } else {
+
+
+          let gifTag = "wrong";
+          let failGif = new Giphy();
+          let promise3 = failGif.getGif(gifTag);
+          promise3.then(function(response) {
+            const body3 = JSON.parse(response);
+            $(".wrongAnswer").html(`<img src="${body3.data.images.original.url}">`)
+          });
+
+
+
+          $(".wrongAnswer").show();
+          $(".kanyeCorrect").hide();
+          $("#donald").off();
+          $("#kanye").off();
+          player.score = 0;
+        }
       $(".score").text(player.score);
     });
   });

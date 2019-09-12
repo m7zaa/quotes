@@ -48,10 +48,10 @@ export class Player {
 }
 
 export class Giphy {
-  getGif() {
+  getGif(gifTag) {
     return new Promise(function(resolve, reject) {
       let request = new XMLHttpRequest();
-      const url = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=kanye_west`;
+      const url = `https://api.giphy.com/v1/gifs/random?api_key=${process.env.API_KEY}&tag=${gifTag}`;
       request.onload = function() {
         if (this.status === 200) {
           resolve(request.response);
