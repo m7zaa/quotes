@@ -40,8 +40,27 @@ export class NumberGenerator {
   return Math.floor(Math.random() * 10);
   }
 }
+
 export class Player {
   getScore() {
     this.score = 0;
+  }
+}
+
+export class Giphy {
+  getGif() {
+    return new Promise(function(resolve, reject) {
+      let request = new XMLHttpRequest();
+      const url = `https://api.giphy.com/v1/gifs/random?api_key=yQo8Z3kk8HkAC5Se3BOU9KYTBvwYUHFC&tag=kanye_west`;
+      request.onload = function() {
+        if (this.status === 200) {
+          resolve(request.response);
+        } else {
+          reject(Error(request.statusText));
+        }
+      }
+      request.open("GET", url, true);
+      request.send();
+    });
   }
 }

@@ -2,21 +2,22 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { TronaldDump, KanyeRest, NumberGenerator } from './quote';
+import { TronaldDump, KanyeRest, NumberGenerator, Giphy } from './quote';
 
 
 $(document).ready(function() {
-  // let score = 0;
   $('#start').click(function(){
-    $(".gamePlay").show();
     $("#start").hide();
     let player = {score:0};
+    $(".gamePlay").show();
+    $(".hidden").hide();
+
+
   $('#getQuote').click(function() {
     $(".hidden").hide();
-    // $(".donaldQuote").hide();
-    // $(".donaldCorrect").hide();
-    // $(".kanyeCorrect").hide();
-    // $(".wrongAnswer").hide();
+    $("#start").hide();
+    $("#kanye").show();
+    $("#donald").show();
     const randomNumber = new NumberGenerator();
     const number = randomNumber.randomNumber1();
     console.log(number);
@@ -27,24 +28,23 @@ $(document).ready(function() {
       const body = JSON.parse(response);
       if (number < 3) {
         $('.donaldQuote').text(body.value).show();
-      }else {
-        console.log("dt false");
+      } else {
+        let kanyeRest = new KanyeRest();  // create instance of Kanye West
+        let promise2 = kanyeRest.getKWQuotes();  // call the instance method and pass in user input
+        promise2.then(function(response) {
+          const body = JSON.parse(response);
+          if (number >= 3) {
+            $('.kanyeQuote').text(body.quote).show();
+          } else {
+            console.log("kanye false");
+          }
+        }, function(error) {
+          console.log(`There was an error processing your request: ${error.message}`);
+        });
       }
     },
     function(error) {
       console.log( `There was an error processing your request: ${error.message}`);
-    });
-    let kanyeRest = new KanyeRest();  // create instance of Kanye West
-    let promise2 = kanyeRest.getKWQuotes();  // call the instance method and pass in user input
-    promise2.then(function(response) {
-      const body = JSON.parse(response);
-      if (number >= 3) {
-        $('.kanyeQuote').text(body.quote).show();
-      }else {
-        console.log("kanye false");
-      }
-    }, function(error) {
-      console.log(`There was an error processing your request: ${error.message}`);
     });
 
     $("#donald").click(function(){
@@ -71,6 +71,15 @@ $(document).ready(function() {
         $("#donald").off();
         $("#kanye").off();
         player.score ++;
+        let kanyeGif = new Giphy();
+        let promise3 = kanyeGif.getGif();
+        promise3.then(function(response) {
+      const body3 = JSON.parse(response);
+      console.log(body3);
+      $(".kanyeGif").html(`<img src="${body3.data.images.original.url}">`)
+    }, function(error) {
+      console.log(`There was an error processing your request: ${error.message}`);
+    });
       } else {
         $(".wrongAnswer").show();
         $(".kanyeCorrect").hide();
@@ -80,10 +89,6 @@ $(document).ready(function() {
       }
       $(".score").text(player.score);
     });
-
-
   });
-
 });
-
 });
