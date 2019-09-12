@@ -2,7 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
-import { TronaldDump, KanyeRest } from './quote';
+import { TronaldDump, KanyeRest, NumberGenerator } from './quote';
 
 
 $(document).ready(function() {
@@ -12,14 +12,15 @@ $(document).ready(function() {
     $(".donaldCorrect").hide();
     $(".kanyeCorrect").hide();
     $(".wrongAnswer").hide();
-
-
+    const randomNumber = new NumberGenerator();
+    const number = randomNumber.randomNumber1();
+    console.log(number);
     let tronaldDump = new TronaldDump();  // create instance of Trump Quotes
     let promise = tronaldDump.getDTQuotes();  // call the instance method and pass in user input
-    const randomNumber = Math.floor(Math.random() * 10);
+
     promise.then(function(response) {
       const body = JSON.parse(response);
-      if (randomNumber < 3) {
+      if (number < 3) {
         $('.donaldQuote').text(body.value).show();
       }else {
         console.log("dt false");
@@ -32,8 +33,8 @@ $(document).ready(function() {
     let promise2 = kanyeRest.getKWQuotes();  // call the instance method and pass in user input
     promise2.then(function(response) {
       const body = JSON.parse(response);
-      // const randomNumber1 = Math.floor(Math.random() * 10);
-      if (randomNumber > 3) {
+      // const number1 = Math.floor(Math.random() * 10);
+      if (number > 3) {
         $('.kanyeQuote').text(body.quote).show();
       }else {
         console.log("kanye false");
@@ -45,29 +46,29 @@ $(document).ready(function() {
 
 
     $("#donald").click(function(){
-      if (randomNumber < 3) {
+      if (number < 3) {
         $(".donaldCorrect").show();
         $(".wrongAnswer").hide();
 
       } else {
         $(".wrongAnswer").show();
+        $(".donaldCorrect").hide();
+
         console.log("donald else")
-        console.log(randomNumber)
+        console.log(number)
 
 
       }
     });
 
     $("#kanye").click(function(){
-      if (randomNumber >= 3) {
+      if (number >= 3) {
         $(".kanyeCorrect").show();
         $(".wrongAnswer").hide();
 
       } else {
         $(".wrongAnswer").show();
-        console.log("kanye else")
-        console.log(randomNumber)
-
+        $(".kanyeCorrect").hide();
       }
     });
 

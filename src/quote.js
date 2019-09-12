@@ -34,3 +34,9 @@ export class KanyeRest {
     });
   }
 }
+
+export class NumberGenerator {
+  randomNumber1() {
+  return Math.floor(Math.random() * 10);
+  }
+}

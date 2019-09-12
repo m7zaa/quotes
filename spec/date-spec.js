@@ -1,1 +1,1 @@
- import { NewDate } from './../src/date.js';
+ import {  } from './../src/quote.js';
