@@ -40,3 +40,8 @@ export class NumberGenerator {
   return Math.floor(Math.random() * 10);
   }
 }
+export class Player {
+  getScore() {
+    this.score = 0;
+  }
+}

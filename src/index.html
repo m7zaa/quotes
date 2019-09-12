@@ -7,27 +7,33 @@
   <body>
     <div class="container">
       <h2>Who Said That?</h2>
-      <button class="btn btn-primary" type="button" id="getQuote" name="button">Get Quote</button>
+      <button type="button"  id="start" class="btn btn-primary">Start Game</button>
+      <div class="gamePlay">
+        <button class="btn btn-primary" type="button" id="getQuote" name="button">Get Quote</button>
 
 
-      <div class="kanyeQuote">
-      </div>
-      <div class="donaldQuote">
-      </div>
+        <div class="kanyeQuote hidden">
+        </div>
+        <div class="donaldQuote hidden">
+        </div>
 
-      <button class="btn btn-primary" type="button" id="kanye" name="button">Kanye West</button>
-      <button class="btn btn-primary" type="button" id="donald" name="button">Donald Trump</button>
+        <button class="btn btn-primary" type="button" id="kanye" class="hidden" name="button">Kanye West</button>
+        <button class="btn btn-primary" type="button" id="donald" class="hidden" name="button">Donald Trump</button>
 
-      <div class="donaldCorrect">
-        <p>It WAS Donald!</p>
-      </div>
+        <div class="donaldCorrect hidden">
+          <p>It WAS Donald!</p>
+        </div>
 
-      <div class="kanyeCorrect hidden">
-        <p>It WAS Kanye!</p>
+        <div class="kanyeCorrect hidden">
+          <p>It WAS Kanye!</p>
+        </div>
+        <div class="wrongAnswer hidden">
+          <p>WRONG!</p>
+        </div>
+        <div class="">
+          <p  class="score"></p>
+        </div>
       </div>
-      <div class="wrongAnswer hidden">
-        <p>WRONG!</p>
       </div>
-  </div>
   </body>
 </html>

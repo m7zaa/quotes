@@ -6,12 +6,17 @@ import { TronaldDump, KanyeRest, NumberGenerator } from './quote';
 
 
 $(document).ready(function() {
+  // let score = 0;
+  $('#start').click(function(){
+    $(".gamePlay").show();
+    $("#start").hide();
+    let player = {score:0};
   $('#getQuote').click(function() {
-    $(".kanyeQuote").hide();
-    $(".donaldQuote").hide();
-    $(".donaldCorrect").hide();
-    $(".kanyeCorrect").hide();
-    $(".wrongAnswer").hide();
+    $(".hidden").hide();
+    // $(".donaldQuote").hide();
+    // $(".donaldCorrect").hide();
+    // $(".kanyeCorrect").hide();
+    // $(".wrongAnswer").hide();
     const randomNumber = new NumberGenerator();
     const number = randomNumber.randomNumber1();
     console.log(number);
@@ -27,53 +32,58 @@ $(document).ready(function() {
       }
     },
     function(error) {
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+      console.log( `There was an error processing your request: ${error.message}`);
     });
     let kanyeRest = new KanyeRest();  // create instance of Kanye West
     let promise2 = kanyeRest.getKWQuotes();  // call the instance method and pass in user input
     promise2.then(function(response) {
       const body = JSON.parse(response);
-      // const number1 = Math.floor(Math.random() * 10);
-      if (number > 3) {
+      if (number >= 3) {
         $('.kanyeQuote').text(body.quote).show();
       }else {
         console.log("kanye false");
       }
-      // $('.kanyeQuote').text(body.quote);
     }, function(error) {
-      $('.showErrors').text(`There was an error processing your request: ${error.message}`);
+      console.log(`There was an error processing your request: ${error.message}`);
     });
-
 
     $("#donald").click(function(){
       if (number < 3) {
+        $(".hidden").hide();
         $(".donaldCorrect").show();
-        $(".wrongAnswer").hide();
-
+        $("#donald").off();
+        $("#kanye").off();
+        player.score ++;
       } else {
+        $(".hidden").hide();
         $(".wrongAnswer").show();
-        $(".donaldCorrect").hide();
-
-        console.log("donald else")
-        console.log(number)
-
-
+        $("#donald").off();
+        $("#kanye").off();
+        player.score = 0;
       }
+      $(".score").text(player.score);
     });
 
     $("#kanye").click(function(){
       if (number >= 3) {
+        $(".hidden").hide();
         $(".kanyeCorrect").show();
-        $(".wrongAnswer").hide();
-
+        $("#donald").off();
+        $("#kanye").off();
+        player.score ++;
       } else {
         $(".wrongAnswer").show();
         $(".kanyeCorrect").hide();
+        $("#donald").off();
+        $("#kanye").off();
+        player.score = 0;
       }
+      $(".score").text(player.score);
     });
 
 
   });
 
+});
 
 });

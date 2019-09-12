@@ -1,4 +1,4 @@
-.kanyeQuote, .donaldQuote, .kanyeCorrect, .donaldCorrect, .wrongAnswer {
+.kanyeQuote, .donaldQuote, .kanyeCorrect, .donaldCorrect, .wrongAnswer, .gamePlay{
   display: none;
 }
 
