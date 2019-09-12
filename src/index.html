@@ -1,42 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
     <meta charset="utf-8">
     <title>Who Said That?</title>
   </head>
   <body>
     <div class="container">
-      <div class="jumbotron">
-      <h2>Who Said That?</h2>
-    </div>
+
+      <h1>Who Said That?</h1>
+
       <button type="button"  id="start" class="btn btn-warning">Start Game</button>
       <div class="gamePlay">
         <button class="btn btn-warning" type="button" id="getQuote" name="button">Get Quote</button>
-
-
-        <div class="kanyeQuote hidden">
+        <div class="row">
         </div>
-        <div class="donaldQuote hidden">
+        <!-- <div class="row"> -->
+          <div class="quote hidden">
+            <div class="kanyeQuote hidden"></div>
+            <div class="donaldQuote hidden"></div>
+          <!-- </div> -->
         </div>
-
-        <button class="btn btn-warning hidden" type="button" id="kanye" name="button">Kanye West</button>
-        <button class="btn btn-warning hidden" type="button" id="donald" name="button">Donald Trump</button>
+        <!-- <div class="row"> -->
+          <button class="btn btn-warning hidden" type="button" id="kanye" name="button">Kanye West</button>
+          <button class="btn btn-warning hidden" type="button" id="donald" name="button">Donald Trump</button>
+        <!-- </div> -->
 
         <div class="donaldCorrect hidden">
           <div class="trumpGif"></div>
-          <p>It WAS Donald!</p>
+          <h2>It WAS Donald!</h2>
         </div>
 
         <div class="kanyeCorrect hidden">
           <div class="kanyeGif"></div>
-          <p>It WAS Kanye!</p>
+          <h2>It WAS Kanye!</h2>
         </div>
 
         <div class="wrongAnswer hidden">
           <p>WRONG!</p>
         </div>
 
-        <div class="score"></div>
+        <div class="scoreDiv">
+          <h2 span class="score"></h2>
+        </div>
       </div>
     </div>
   </body>

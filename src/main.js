@@ -18,6 +18,9 @@ $(document).ready(function() {
     $("#start").hide();
     $("#kanye").show();
     $("#donald").show();
+    $(".quote").show();
+    $(".gamePlay").show();
+
     const randomNumber = new NumberGenerator();
     const number = randomNumber.randomNumber1();
     console.log(number);
@@ -66,18 +69,16 @@ $(document).ready(function() {
           console.log(`There was an error processing your request: ${error.message}`);
         });
       } else {
-        
-        let gifTag = "wrong";
+
+        let gifTag = "trump_wrong";
         let failGif = new Giphy();
         let promise3 = failGif.getGif(gifTag);
         promise3.then(function(response) {
           const body3 = JSON.parse(response);
           $(".wrongAnswer").html(`<img src="${body3.data.images.original.url}">`)
         });
-
-
-
         $(".hidden").hide();
+        $(".quote").hide();
         $(".wrongAnswer").show();
         $("#donald").off();
         $("#kanye").off();
@@ -107,7 +108,7 @@ $(document).ready(function() {
         } else {
 
 
-          let gifTag = "wrong";
+          let gifTag = "trump_wrong";
           let failGif = new Giphy();
           let promise3 = failGif.getGif(gifTag);
           promise3.then(function(response) {
@@ -116,6 +117,7 @@ $(document).ready(function() {
           });
 
 
+          $(".hidden").hide();
 
           $(".wrongAnswer").show();
           $(".kanyeCorrect").hide();
